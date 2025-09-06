@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvkbuwekt6hk0"]
+
+[ext_resource type="Texture2D" uid="uid://y4mokheqsitm" path="res://Assets/scene/colored_castle.png" id="1_1l5ts"]
+[ext_resource type="Texture2D" uid="uid://cumi8jqpv6d10" path="res://Assets/scene/waterTop_high.png" id="2_2wk6i"]
+
+[node name="LevelBase" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(-5, -154)
+scale = Vector2(1.13, 1)
+texture = ExtResource("1_1l5ts")
+centered = false
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(128, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(567, 621)
+texture = ExtResource("2_2wk6i")
