@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvkbuwekt6hk0"]
+[gd_scene load_steps=4 format=3 uid="uid://cvkbuwekt6hk0"]
 
 [ext_resource type="Texture2D" uid="uid://y4mokheqsitm" path="res://Assets/scene/colored_castle.png" id="1_1l5ts"]
-[ext_resource type="Texture2D" uid="uid://cumi8jqpv6d10" path="res://Assets/scene/waterTop_high.png" id="2_2wk6i"]
+[ext_resource type="Script" uid="uid://mvc2xb2oo48j" path="res://Scenes/LevelBase/level_base.gd" id="1_2wk6i"]
+[ext_resource type="PackedScene" uid="uid://wh53cglm3ybq" path="res://Scenes/Water/water.tscn" id="3_2wk6i"]
 
 [node name="LevelBase" type="Node2D"]
+position = Vector2(1, 1)
+script = ExtResource("1_2wk6i")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(-5, -154)
@@ -11,10 +14,8 @@ scale = Vector2(1.13, 1)
 texture = ExtResource("1_1l5ts")
 centered = false
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
-repeat_size = Vector2(128, 0)
-repeat_times = 10
+[node name="AnimalStart" type="Marker2D" parent="."]
+position = Vector2(144, 280)
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(567, 621)
-texture = ExtResource("2_2wk6i")
+[node name="Water" parent="." instance=ExtResource("3_2wk6i")]
+position = Vector2(545, 630)

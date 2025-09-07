@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgwu3pye7frpc"]
+[gd_scene load_steps=11 format=3 uid="uid://dgwu3pye7frpc"]
 
 [ext_resource type="Texture2D" uid="uid://bqb5ps0274j0x" path="res://Assets/env/elementStone025.png" id="1_oy6ep"]
+[ext_resource type="Script" uid="uid://qenf8s3rov2c" path="res://Scenes/Test/bird_1.gd" id="2_83r8m"]
 [ext_resource type="Texture2D" uid="uid://bwbny03c4jtko" path="res://Assets/player/parrot.png" id="2_kr3tn"]
 [ext_resource type="Texture2D" uid="uid://bywqj3ji5pftb" path="res://Assets/env/elementWood015.png" id="3_v7cj3"]
 
@@ -59,7 +60,12 @@ position = Vector2(580, 644)
 shape = SubResource("RectangleShape2D_v7cj3")
 
 [node name="Bird1" type="RigidBody2D" parent="."]
-position = Vector2(158, 104)
+position = Vector2(146, 141)
+input_pickable = true
+freeze = true
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("2_83r8m")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bird1"]
 position = Vector2(-3.8147e-06, -7.62939e-06)
@@ -68,6 +74,20 @@ texture = ExtResource("2_kr3tn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bird1"]
 shape = SubResource("CircleShape2D_v7cj3")
+
+[node name="Label" type="Label" parent="Bird1"]
+offset_left = -44.0
+offset_top = -117.0
+offset_right = 11.0
+offset_bottom = -83.0
+theme_override_font_sizes/font_size = 24
+text = "0000"
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="Bird1"]
+wait_time = 2.0
+one_shot = true
+autostart = true
 
 [node name="Bird2" type="RigidBody2D" parent="."]
 position = Vector2(483, 307)
@@ -123,3 +143,7 @@ shape = SubResource("RectangleShape2D_83r8m")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Plank"]
 position = Vector2(918, 548)
 shape = SubResource("RectangleShape2D_vfjqq")
+
+[connection signal="input_event" from="Bird1" to="Bird1" method="_on_input_event"]
+[connection signal="sleeping_state_changed" from="Bird1" to="Bird1" method="_on_sleeping_state_changed"]
+[connection signal="timeout" from="Bird1/Timer" to="Bird1" method="_on_timer_timeout"]
