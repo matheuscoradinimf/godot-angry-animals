@@ -90,6 +90,7 @@ func calculate_impulse() -> Vector2:
 	return _dragged_vector * -IMPULSE_MULT
 
 func start_release() -> void:
+	SignalHub.on_attempt_made.emit()
 	arrow.hide()
 	launch_sound.play()
 	freeze = false
@@ -128,9 +129,17 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	die()
 
 func _on_sleeping_state_changed() -> void:
-	pass
+	if sleeping:
+		print(get_colliding_bodies())
+		for body in get_colliding_bodies():
+			if body is Cup:
+				body.die()
+		call_deferred("die")
+		print("ANIMAL:: cup died")
+
 
 func _on_body_entered(body: Node) -> void:
-	pass
+	if body is Cup and kick_sound.playing==false:
+		kick_sound.play()
 
 # endregion

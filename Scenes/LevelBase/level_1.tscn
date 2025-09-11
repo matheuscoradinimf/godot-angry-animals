@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba44ben8w25yt"]
+
+[ext_resource type="PackedScene" uid="uid://cvkbuwekt6hk0" path="res://Scenes/LevelBase/level_base.tscn" id="1_b0l7w"]
+[ext_resource type="PackedScene" uid="uid://bb12sooa74pgr" path="res://Scenes/Cup/cup.tscn" id="2_kj8im"]
+
+[node name="Level1" instance=ExtResource("1_b0l7w")]
+
+[node name="GameUI" parent="CanvasLayer" index="0"]
+visible = true
+
+[node name="Cup" parent="." index="4" instance=ExtResource("2_kj8im")]
+position = Vector2(427, 370)

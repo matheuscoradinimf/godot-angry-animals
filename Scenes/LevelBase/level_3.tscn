@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyeyq162lklw4"]
+
+[ext_resource type="PackedScene" uid="uid://cvkbuwekt6hk0" path="res://Scenes/LevelBase/level_base.tscn" id="1_rlio8"]
+[ext_resource type="PackedScene" uid="uid://bb12sooa74pgr" path="res://Scenes/Cup/cup.tscn" id="2_blxs8"]
+
+[node name="Level3" instance=ExtResource("1_rlio8")]
+
+[node name="GameUI" parent="CanvasLayer" index="0"]
+visible = true
+
+[node name="Cup" parent="." index="4" instance=ExtResource("2_blxs8")]
+position = Vector2(352, 424)
+
+[node name="Cup2" parent="." index="5" instance=ExtResource("2_blxs8")]
+position = Vector2(815, 150)
+
+[node name="Cup3" parent="." index="6" instance=ExtResource("2_blxs8")]
+position = Vector2(543, 295)

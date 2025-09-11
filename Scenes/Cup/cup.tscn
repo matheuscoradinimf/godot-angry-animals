@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://bb12sooa74pgr"]
+
+[ext_resource type="Script" uid="uid://bipo1yrwyacmb" path="res://Scenes/Cup/cup.gd" id="1_0g4ms"]
+[ext_resource type="Texture2D" uid="uid://xhm0m1x4gpqp" path="res://Assets/env/elementWood004.png" id="1_fwowy"]
+[ext_resource type="Texture2D" uid="uid://bywqj3ji5pftb" path="res://Assets/env/elementWood015.png" id="2_yecwy"]
+[ext_resource type="AudioStream" uid="uid://c7naqc7bit7wa" path="res://Assets/audio/vanish.wav" id="3_yecwy"]
+
+[sub_resource type="Animation" id="Animation_yecwy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WoodSprits:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fwowy"]
+resource_name = "vanish"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WoodSprits:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(0, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_yecwy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yecwy"]
+_data = {
+&"RESET": SubResource("Animation_yecwy"),
+&"vanish": SubResource("Animation_fwowy")
+}
+
+[node name="Cup" type="StaticBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_0g4ms")
+
+[node name="WoodSprits" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="WoodSprits"]
+position = Vector2(-72, -68)
+texture = ExtResource("1_fwowy")
+
+[node name="Sprite2D2" type="Sprite2D" parent="WoodSprits"]
+texture = ExtResource("1_fwowy")
+offset = Vector2(72, -68)
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="WoodSprits"]
+texture = ExtResource("2_yecwy")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-107, -102, -36, -34, 39, -34, 105, -104, 108, 35, -108, 33)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yecwy")
+}
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

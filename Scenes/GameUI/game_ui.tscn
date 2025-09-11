@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwjsrau8o1war"]
+
+[ext_resource type="LabelSettings" uid="uid://gfujqdkkgb7p" path="res://Resources/gray_32.tres" id="1_s3w5c"]
+[ext_resource type="Script" uid="uid://b34on2p13glve" path="res://Scenes/GameUI/game_ui.gd" id="1_u0r4i"]
+[ext_resource type="LabelSettings" uid="uid://c6gt11jkycs5i" path="res://Resources/blue_72.tres" id="2_smc31"]
+[ext_resource type="LabelSettings" uid="uid://dm32tccb3ayfe" path="res://Resources/light_48.tres" id="3_0u7gi"]
+[ext_resource type="AudioStream" uid="uid://j6skqpr1mlej" path="res://Assets/audio/jazzyfrenchy.mp3" id="4_0u7gi"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_u0r4i")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "LEVEL 10"
+label_settings = ExtResource("1_s3w5c")
+
+[node name="AttempsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "ATTEMPTS: 0"
+label_settings = ExtResource("1_s3w5c")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LevelComplete" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "LEVEL COMPLETE"
+label_settings = ExtResource("2_smc31")
+
+[node name="LevelSpace" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "PRESS ESPACE"
+label_settings = ExtResource("3_0u7gi")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0u7gi")
+parameters/looping = true
